@@ -1,0 +1,80 @@
+My first page。
+
+
+
+Git 基本命令笔记：
+
+git init  初始化本地仓库
+
+git ignore  排除不需要提交的文件/文件夹 路径 
+
+echo "# myView" >> README.md   把 # myView 添加到 README.md 里面（当文件不存在时自动创建）
+
+git add README.md  添加 README.md 文件到本地缓存区中
+	git add .   把工作区的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件
+	git add -u  仅监控已经被 add 的文件，将被修改的文件提交到暂存区，不会提交新文件
+	git add -A  是 -u 和 add . 的合集
+
+git diff --cached  查看历史区和暂存区有区别的内容
+
+git commit -m "first commit"  提交到本地历史区（引号内为自定义的改动描述）
+
+git remote add origin https://github.com/xxx/name.git 和远程仓库建立连接
+
+git push -u origin master  推送到 master 分支上
+	可能出现的问题：远程仓库初始化时选择创建 README.md 而本地仓库中没有时，会出现 push 失败
+
+git status  查看被修改过的文件有哪些（比较暂存区和工作区不同的有哪些文件）
+	git diff  查看所有文件修改了哪些内容
+	git diff aa  查看 aa 路径下的文件被修改了哪些内容
+
+git log  查看修改日志
+	git log --oneline  设置日志记录查看的格式（只显示一行）
+	git log --oneline -2  只显示最近的两条历史修改记录
+
+git pull  拉取远程代码并合并代码
+	git fetch  拉取远程代码，但不合并代码
+	git merge  合并代码    （代码有冲突的情况下选择这种方法手动合并代码）（冲突块格式：<<<  =====代码  >>>）
+
+git checkout
+	git checkout branchName  切换到 branchName 分支（branchName 为分支的名称）
+	git checkout -- fileName  用暂存区中的 fileName 文件覆盖工作区中的 fileName 文件，相当于取消自上次执行 add 以来的本地修改（fileName 为具体文件名）
+
+git reset --mixed  回滚到某个版本，工作区是不变的，回退历史区和暂存区
+	git reset -soft  回滚到某个版本  回退到历史区,工作区和暂存区不变
+	git reset -hard  彻底回滚  历史区和暂存区都改变
+	git reset --hard HEAD~  回滚到上一个历史区的版本
+	git reset -hard a0905flabafdsjflasdjfl  回滚到指定的版本（代码为版本 ID，git log 可得到）
+
+git clone https://aa/a/bb.git  clone别人的项目到自己的本地仓库中
+
+git config --global user.name ''  配置全局登录名
+git config --golbal user.email ''  配置全局用户名
+
+git branch
+	git branch -a  查看所有远程分支
+	git branch  查看本地分支
+	git branch branchName  创建分支（branchName 为准备创建的分支名称）
+
+git bash  控制台
+
+
+Git 和 svn 的区别：
+
+git 是一个分布式的项目管理系统
+	具有的功能：备份文件、记录历史、回滚（回到之前提交的版本）、共享、团队开发、查看别人的开源项目、开发自己的项目
+
+	分布式：没有中央服务器，每个开发者本地都有一个完整的版本库，可以不需要联网
+
+	公司中一般会使用一台中央服务器，方便本地开发者之间相互推送、交换
+
+svn 是一个集中式项目管理系统
+	集中式：有一个中央服务器，每个人开发都需要从中央服务器获取代码，改动之后需要再提交到中央服务器
+
+	缺点：1、在服务器挂掉时，无法从中央服务器获取代码开发
+	      2、如果网速比较慢，上传文件又比较大的情况下，svn 会非常慢
+
+
+
+
+(如有错误，欢迎指出）
